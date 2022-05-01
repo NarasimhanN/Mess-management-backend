@@ -1,6 +1,7 @@
 package com.example.dao;
 
 import com.example.model.Countplates;
+import com.example.model.CountplatesPKID;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CountplatesRepository extends JpaRepository<Countplates, Integer> {
+public interface CountplatesRepository extends JpaRepository<Countplates, CountplatesPKID> {
 
 
 //    @Query(value = "select sum(breakfast),sum(lunch),sum(dinner) from countplates",

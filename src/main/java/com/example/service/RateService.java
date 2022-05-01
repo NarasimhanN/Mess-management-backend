@@ -3,9 +3,11 @@ package com.example.service;
 import com.example.dao.CountplatesRepository;
 import com.example.model.Countplates;
 import com.example.model.Foodmenu;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -57,14 +59,17 @@ public class RateService {
     }
 
     public Countplates postRating(Countplates countplates){
-//        Countplates c1=countplatesRepository.fetchCol(countplates.getStudentid());
-//        c1.setBreakfast(countplates.getBreakfast());
-//        c1.setLunch(countplates.getLunch());
-//        c1.setDinner(countplates.getDinner());
-       // c1.setFeedback(countplates.getFeedback());
-        return countplatesRepository.save(countplates);
+       Countplates c1=countplatesRepository.fetchCol(countplates.getStudentid());
+        if(c1==null)
+            return countplatesRepository.save(countplates);
+        else {
+          c1.setBreakfastrating(countplates.getBreakfastrating());
+          c1.setLunchrating(countplates.getLunchrating());
+          c1.setDinnerrating(countplates.getDinnerrating());
+          c1.setFeedback(countplates.getFeedback());
+        return countplatesRepository.save(c1);
 
-        //return countplatesRepository.save(countplates);
+        }
     }
 
 }

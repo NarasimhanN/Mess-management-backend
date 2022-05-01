@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.IdClass;
 import javax.persistence.Table;
 import java.util.Date;
 
@@ -17,10 +18,12 @@ import java.util.Date;
 @ToString
 @Entity
 @Table
+@IdClass(CountplatesPKID.class)
 public class Countplates {
 
     @Id
     private Integer studentid;
+    @Id
     private Date date;
 
     private Integer breakfast;
