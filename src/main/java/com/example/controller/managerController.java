@@ -31,11 +31,4 @@ public class managerController {
     }
 
 
-
-//    @GetMapping("/getmenu/{day}")
-//    public ResponseEntity<?> getMenubyday(@PathVariable("day") String day){
-//        return ResponseEntity.ok(menuService.getMenubyday(day));
-//    }
-
-
 }

@@ -2,9 +2,12 @@ package com.example.service;
 
 import com.example.dao.CountplatesRepository;
 import com.example.model.Countplates;
+import com.example.model.History;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -32,29 +35,34 @@ public class CountplateService {
         return res;
 
     }
+    public List<History> getPlatehistory(Integer studentid){   //from student side to see date and plate count history
+       // List<Integer> res = new ArrayList<Integer>();
+        //List<ArrayList<String>> listOfLists = new ArrayList<ArrayList<String>>();
+        List<History>his=countplatesRepository.findIDateAndBreakfastAndLunchAndDinnerById(studentid);
+       // res.add(his.getDate());
 
-    public List<Integer> getPlatehistory(Integer studentid){
-        return countplatesRepository.getcountofplateshistory(studentid);
+//        res.add(his.getBreakfast());
+//        res.add(his.getLunch());
+//        res.add(his.getDinner());
+
+        return his;
     }
 
     public Countplates postPlate(Countplates countplates){
-        Countplates c1=countplatesRepository.fetchCol(countplates.getStudentid());
+        Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(),new Date());
         System.out.println(c1);
-        if(c1==null)
-            return null;
-       else {
+        countplates.setDate(new Date());
+       if(c1==null)  //if no entry that is each new day
+            return countplatesRepository.save(countplates);
+       else {  //if want to update current food
+            c1.setDate(new Date());
             c1.setBreakfast(countplates.getBreakfast());
             c1.setLunch(countplates.getLunch());
             c1.setDinner(countplates.getDinner());
-            // c1.setFeedback(countplates.getFeedback());
             return countplatesRepository.save(c1);
         }
     }
 
-    //for dummy data store for testing purpose
-    public void populate(){
-        Countplates countplates = new Countplates(2,new Date(),1,1,0,1,0,3,"bhut bekar");
-        countplatesRepository.save(countplates);
-    }
+
 
 }

@@ -7,9 +7,10 @@ import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -31,7 +32,6 @@ public class RateService {
             return res;
         }
         else if(id==2){
-            //return countplatesRepository.getbylunchrating();
             List<Integer> res=new ArrayList<Integer>();
             Integer rating1,rating2,rating3,rating4,rating5;
             res.add(rating1=countplatesRepository.getbylunchrating(1));
@@ -59,9 +59,13 @@ public class RateService {
     }
 
     public Countplates postRating(Countplates countplates){
-       Countplates c1=countplatesRepository.fetchCol(countplates.getStudentid());
+       Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(), new Date());
         if(c1==null)
-            return countplatesRepository.save(countplates);
+        {
+            //u hv not selected meal, so cant give feedback today
+            System.out.println("You have not taken meal today so, You can't rate ");
+            return null;
+        }
         else {
           c1.setBreakfastrating(countplates.getBreakfastrating());
           c1.setLunchrating(countplates.getLunchrating());

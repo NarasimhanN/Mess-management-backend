@@ -39,9 +39,5 @@ public class foodcomController {
         return ResponseEntity.ok(menuService.updateFoodMenu(foodmenu));
     }
 
-    @PostMapping("/populatemesstime")
-    public ResponseEntity<?> populatemesstime() {
-        timeService.populatemesstime();
-        return ResponseEntity.ok("Working");
-    }
+
 }

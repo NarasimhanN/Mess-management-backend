@@ -13,9 +13,6 @@ public class InstructionService {
     @Autowired
     private InstructionRepository instructionRepository;
 
-    public Instruction updatemessInstruction(Instruction instruction){
-        return instructionRepository.save(instruction);
-    }
 
     public Instruction updatemessInstruction(Instruction instruction,Integer id)
     {

@@ -2,10 +2,13 @@ package com.example.dao;
 
 import com.example.model.Countplates;
 import com.example.model.CountplatesPKID;
+import com.example.model.History;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -51,15 +54,22 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Countp
 
 
     @Query(
-            value="select date,breakfast,lunch,dinner from countplates where studentid=?1",
+            value="select UNIX_TIMESTAMP(date),breakfast,lunch,dinner from countplates c where c.studentid=?1",
             nativeQuery = true
     )
-    public List<Integer> getcountofplateshistory(Integer studentid);
+    public List<History> findIDateAndBreakfastAndLunchAndDinnerById(Integer studentid);
+
+//    @Query("select c from Countplates c where c.studentid = ?1")
+//    History findIDateAndBreakfastAndLunchAndDinnerById(int id);
+
+
+    @Query( "select c from Countplates c where c.studentid= :n and c.date= :x")
+    public Countplates getUserByIdAndCurrDate(@Param("n")Integer req, @Param("x") Date date);
 
     @Query(
-            value="select * from countplates c where c.studentid=?1",
+            value="select * from countplates group by studentid",
             nativeQuery = true
     )
-    public Countplates fetchCol(Integer req);
+    public List<Countplates> findAll();
 
 }

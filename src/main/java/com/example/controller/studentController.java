@@ -25,8 +25,6 @@ public class studentController {
     @Autowired
     private RateService rateService;
 
-    @Autowired
-    private StudentdetailspopulateService studentdetailspopulateService;
 
     @GetMapping("/getMesstime")
     public ResponseEntity<?> getMesstime(){
@@ -38,10 +36,6 @@ public class studentController {
         return ResponseEntity.ok(instructionService.fetchInstruction(id));
     }
 
-    @GetMapping("/getTodaymenu")
-    public ResponseEntity<?> getTodaymenu(){
-        return ResponseEntity.ok(menuService.fetchTodaymenu());
-    }
 
     @GetMapping("/getmenu/{day}")
     public ResponseEntity<?> getMenubyday(@PathVariable("day") String day){
@@ -53,7 +47,7 @@ public class studentController {
         return ResponseEntity.ok(countplateservice.getPlatehistory(id));
     }
 
-//    requestmapping used when we r sending more than 1 column hv to save
+   // requestmapping used when we r sending more than 1 column hv to save
     @PostMapping("/postplatecount")
     public ResponseEntity<?> postPlatecount(@RequestBody Countplates countplates){
         return ResponseEntity.ok(countplateservice.postPlate(countplates));
@@ -64,16 +58,5 @@ public class studentController {
     }
 
 
-    //for data store (testing purpose)
-    @PostMapping("/populate")
-    public ResponseEntity<?> populate(){
-        countplateservice.populate();
-        return ResponseEntity.ok("Working");
-    }
 
-    @PostMapping("/populatestudententries")
-    public ResponseEntity<?> populatestudententries(){
-        studentdetailspopulateService.populate();
-        return ResponseEntity.ok("Working");
-    }
 }
