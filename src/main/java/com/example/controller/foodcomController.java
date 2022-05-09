@@ -36,6 +36,7 @@ public class foodcomController {
 
     @PostMapping("/updateMenu")
     public ResponseEntity<?> updateMenu(@RequestBody Foodmenu foodmenu) {
+        System.out.println(foodmenu);
         return ResponseEntity.ok(menuService.updateFoodMenu(foodmenu));
     }
 

@@ -12,6 +12,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import java.util.Date;
+import java.time.LocalTime;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 @Service
 public class CountplateService {
 
@@ -49,13 +55,13 @@ public class CountplateService {
     }
 
     public Countplates postPlate(Countplates countplates){
-        Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(),new Date());
+        Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(),java.time.LocalDate.now().toString());
         System.out.println(c1);
-        countplates.setDate(new Date());
+        countplates.setDate(java.time.LocalDate.now().toString());
        if(c1==null)  //if no entry that is each new day
             return countplatesRepository.save(countplates);
        else {  //if want to update current food
-            c1.setDate(new Date());
+            c1.setDate(java.time.LocalDate.now().toString());
             c1.setBreakfast(countplates.getBreakfast());
             c1.setLunch(countplates.getLunch());
             c1.setDinner(countplates.getDinner());

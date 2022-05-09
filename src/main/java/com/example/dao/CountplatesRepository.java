@@ -5,9 +5,12 @@ import com.example.model.CountplatesPKID;
 import com.example.model.History;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
+import javax.persistence.TemporalType;
 import java.util.Date;
 import java.util.List;
 
@@ -54,7 +57,7 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Countp
 
 
     @Query(
-            value="select UNIX_TIMESTAMP(date),breakfast,lunch,dinner from countplates c where c.studentid=?1",
+            value="select date,breakfast,lunch,dinner from countplates c where c.studentid=?1",
             nativeQuery = true
     )
     public List<History> findIDateAndBreakfastAndLunchAndDinnerById(Integer studentid);
@@ -64,7 +67,7 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Countp
 
 
     @Query( "select c from Countplates c where c.studentid= :n and c.date= :x")
-    public Countplates getUserByIdAndCurrDate(@Param("n")Integer req, @Param("x") Date date);
+    public Countplates getUserByIdAndCurrDate(@Param("n")Integer req, @Param("x") String date);
 
     @Query(
             value="select * from countplates group by studentid",

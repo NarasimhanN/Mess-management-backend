@@ -5,13 +5,21 @@ import com.example.model.Countplates;
 import com.example.model.Foodmenu;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.TemporalType;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+
+import java.util.Date;
+import java.time.LocalTime;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class RateService {
@@ -59,7 +67,7 @@ public class RateService {
     }
 
     public Countplates postRating(Countplates countplates){
-       Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(), new Date());
+       Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(), java.time.LocalDate.now().toString());
         if(c1==null)
         {
             //u hv not selected meal, so cant give feedback today

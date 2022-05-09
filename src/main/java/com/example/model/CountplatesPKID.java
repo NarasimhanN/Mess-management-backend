@@ -16,5 +16,6 @@ import java.util.Date;
 public class CountplatesPKID implements Serializable{
 
     private Integer studentid;
-    private Date date;
+
+    private String date;
 }
