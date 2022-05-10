@@ -21,7 +21,7 @@ import com.lowagie.text.DocumentException;
 
 @CrossOrigin("*")
 @Controller
-public class UserController {
+public class MessManagerpdfGenerate {
 
 
     @Autowired
