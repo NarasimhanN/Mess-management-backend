@@ -1,12 +1,11 @@
 package com.example.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.Date;
 
 @AllArgsConstructor
@@ -17,12 +16,15 @@ import java.util.Date;
 @ToString
 @Entity
 @Table
+@IdClass(CountplatesPKID.class)
 public class Countplates {
 
     @Id
     private Integer studentid;
-    private Date date;
-
+    @Id
+//    @Temporal(TemporalType.DATE)
+//    private Date date=new Date(System.currentTimeMillis());
+    private String date;
     private Integer breakfast;
 
     private Integer lunch;

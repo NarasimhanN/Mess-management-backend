@@ -1,19 +1,21 @@
 package com.example.dao;
 
 import com.example.model.Countplates;
+import com.example.model.CountplatesPKID;
+import com.example.model.History;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.Temporal;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+
+import javax.persistence.TemporalType;
+import java.util.Date;
 import java.util.List;
 
 @Repository
-public interface CountplatesRepository extends JpaRepository<Countplates, Integer> {
-
-
-//    @Query(value = "select sum(breakfast),sum(lunch),sum(dinner) from countplates",
-//    nativeQuery = true)
-//    public List<Integer> getcountofplates();
+public interface CountplatesRepository extends JpaRepository<Countplates, CountplatesPKID> {
 
     @Query(value = "select sum(breakfast) from countplates where date=curdate()",
             nativeQuery = true)
@@ -41,24 +43,28 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Intege
             nativeQuery = true)
     public Integer getbydinnerrating(Integer ratingNo);
 
-//    @Query(
-//            value="select sum(c.breakfast) as breakfast,sum(c.lunch) as l,sum(c.dinner) as d from countplates c",
-//            nativeQuery = true
-//    )
-//    public List<Integer> getcountofplateshistory();
 
 
 
     @Query(
-            value="select date,breakfast,lunch,dinner from countplates where studentid=?1",
+            value="select date,breakfast,lunch,dinner from countplates c where c.studentid=?1",
             nativeQuery = true
     )
-    public List<Integer> getcountofplateshistory(Integer studentid);
+    public List<History> findIDateAndBreakfastAndLunchAndDinnerById(Integer studentid);
+
+
+
+
+    @Query( "select c from Countplates c where c.studentid= :n and c.date= :x")
+    public Countplates getUserByIdAndCurrDate(@Param("n")Integer req, @Param("x") String date);
+
+
+
 
     @Query(
-            value="select * from countplates c where c.studentid=?1",
+            value="select * from countplates group by studentid",
             nativeQuery = true
     )
-    public Countplates fetchCol(Integer req);
+    public List<Countplates> findAll();
 
 }

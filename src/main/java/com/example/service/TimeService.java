@@ -39,9 +39,4 @@ public class TimeService {
         return messtimeRepository.fetch();
     }
 
-
-    public void populatemesstime(){
-        Messtime messtime= new Messtime(1,2.3,2.4,3.5,5.6,5.6,4.5);
-        messtimeRepository.save(messtime);
-    }
 }

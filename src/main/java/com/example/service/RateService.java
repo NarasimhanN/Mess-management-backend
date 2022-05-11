@@ -3,12 +3,23 @@ package com.example.service;
 import com.example.dao.CountplatesRepository;
 import com.example.model.Countplates;
 import com.example.model.Foodmenu;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Temporal;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.TemporalType;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+
+import java.util.Date;
+import java.time.LocalTime;
+import java.util.List;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Service
 public class RateService {
@@ -29,7 +40,6 @@ public class RateService {
             return res;
         }
         else if(id==2){
-            //return countplatesRepository.getbylunchrating();
             List<Integer> res=new ArrayList<Integer>();
             Integer rating1,rating2,rating3,rating4,rating5;
             res.add(rating1=countplatesRepository.getbylunchrating(1));
@@ -57,14 +67,21 @@ public class RateService {
     }
 
     public Countplates postRating(Countplates countplates){
-//        Countplates c1=countplatesRepository.fetchCol(countplates.getStudentid());
-//        c1.setBreakfast(countplates.getBreakfast());
-//        c1.setLunch(countplates.getLunch());
-//        c1.setDinner(countplates.getDinner());
-       // c1.setFeedback(countplates.getFeedback());
-        return countplatesRepository.save(countplates);
+       Countplates c1=countplatesRepository.getUserByIdAndCurrDate(countplates.getStudentid(), java.time.LocalDate.now().toString());
+        if(c1==null)
+        {
+            //u hv not selected meal, so cant give feedback today
+            System.out.println("You have not taken meal today so, You can't rate ");
+            return null;
+        }
+        else {
+          c1.setBreakfastrating(countplates.getBreakfastrating());
+          c1.setLunchrating(countplates.getLunchrating());
+          c1.setDinnerrating(countplates.getDinnerrating());
+          c1.setFeedback(countplates.getFeedback());
+        return countplatesRepository.save(c1);
 
-        //return countplatesRepository.save(countplates);
+        }
     }
 
 }

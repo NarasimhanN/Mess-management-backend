@@ -20,12 +20,6 @@ public class MenuService {
         return foodmenuRepository.save(foodmenu);
     }
 
-
-
-    public List<Foodmenu> fetchTodaymenu(){
-        return foodmenuRepository.findAll();
-    }
-
     public List<Foodmenu> getMenubyday(String days) {
         return foodmenuRepository.getFoodmenuByDays(days);
     }
