@@ -70,4 +70,6 @@ public class PopulateDataService {
         Studentdetails studentdetails3 = new Studentdetails(2,"divyanshu","divyanshu@gmail.com","123","student","mtech","MT2021186");
         studentdetailsRepository.save(studentdetails3);
     }
+
+
 }
