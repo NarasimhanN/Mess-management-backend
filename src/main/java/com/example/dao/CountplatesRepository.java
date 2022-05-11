@@ -17,11 +17,6 @@ import java.util.List;
 @Repository
 public interface CountplatesRepository extends JpaRepository<Countplates, CountplatesPKID> {
 
-
-//    @Query(value = "select sum(breakfast),sum(lunch),sum(dinner) from countplates",
-//    nativeQuery = true)
-//    public List<Integer> getcountofplates();
-
     @Query(value = "select sum(breakfast) from countplates where date=curdate()",
             nativeQuery = true)
     public Integer getcountofbreakfast();
@@ -48,11 +43,6 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Countp
             nativeQuery = true)
     public Integer getbydinnerrating(Integer ratingNo);
 
-//    @Query(
-//            value="select sum(c.breakfast) as breakfast,sum(c.lunch) as l,sum(c.dinner) as d from countplates c",
-//            nativeQuery = true
-//    )
-//    public List<Integer> getcountofplateshistory();
 
 
 
@@ -62,12 +52,14 @@ public interface CountplatesRepository extends JpaRepository<Countplates, Countp
     )
     public List<History> findIDateAndBreakfastAndLunchAndDinnerById(Integer studentid);
 
-//    @Query("select c from Countplates c where c.studentid = ?1")
-//    History findIDateAndBreakfastAndLunchAndDinnerById(int id);
+
 
 
     @Query( "select c from Countplates c where c.studentid= :n and c.date= :x")
     public Countplates getUserByIdAndCurrDate(@Param("n")Integer req, @Param("x") String date);
+
+
+
 
     @Query(
             value="select * from countplates group by studentid",

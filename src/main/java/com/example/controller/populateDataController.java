@@ -33,4 +33,10 @@ public class populateDataController {
         return ResponseEntity.ok("Working");
     }
 
+    @PostMapping("/populateinstruction")
+    public ResponseEntity<?> populateinstruction() {
+        populateDataService.populateinstruction();
+        return ResponseEntity.ok("Working");
+    }
+
 }

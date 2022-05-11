@@ -1,9 +1,11 @@
 package com.example.service;
 
 import com.example.dao.CountplatesRepository;
+import com.example.dao.InstructionRepository;
 import com.example.dao.MesstimeRepository;
 import com.example.dao.StudentdetailsRepository;
 import com.example.model.Countplates;
+import com.example.model.Instruction;
 import com.example.model.Messtime;
 import com.example.model.Studentdetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class PopulateDataService {
     private MesstimeRepository messtimeRepository;
 
     @Autowired
+    private InstructionRepository instructionRepository;
+
+    @Autowired
     StudentdetailsRepository studentdetailsRepository;
     //populate data in countplates
     public void populatecountplates(){
@@ -38,10 +43,21 @@ public class PopulateDataService {
         countplatesRepository.save(countplates3);
     }
 
-    //populate data in mess time
+//    //populate data in mess time
+//    public void populatemesstime(){
+//        Messtime messtime= new Messtime(1,"2:02","2:98","3:00","3:20","3:40","4:50");
+//        messtimeRepository.save(messtime);
+//    }
+
+
     public void populatemesstime(){
-        Messtime messtime= new Messtime(1,2.3,2.4,3.5,5.6,5.6,4.5);
+        Messtime messtime= new Messtime(1,2.02,2.98,3.00,3.20,3.40,4.50);
         messtimeRepository.save(messtime);
+    }
+
+    public void populateinstruction(){
+        Instruction instruction= new Instruction(1,"ghgjj","guhi","hukh","uiyhiu");
+        instructionRepository.save(instruction);
     }
 
 
