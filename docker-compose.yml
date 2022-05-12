@@ -1,8 +1,7 @@
 version: '3'
 services:
   iglobe-frontend:
-    image: suchibhargav/mess_management_frnt:latest
-    build: /home/suchi/Documents/spe_major/backend/backend-mess-management
+    image: suchibhargav/mess-frnt:latest
     ports:
       - 3000:80
     depends_on:
@@ -17,7 +16,7 @@ services:
       - 8087:8087
     environment:
       - MYSQL_HOST=mysqldb
-      - MYSQL_PORT=3306
+      - MYSQL_PORT=3307
       - MYSQL_USER=root
       - MYSQL_PASSWORD=123
     depends_on:
@@ -28,8 +27,11 @@ services:
     image: mysql
     volumes:
       - ./db:/var/lib/mysql
+    expose:
+      - 3307
     ports:
-      - 3307:3306
+      - 3307:3307
     environment:
       - MYSQL_DATABASE=Mess
       - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_TCP_PORT=3307
