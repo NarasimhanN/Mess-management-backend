@@ -1,5 +1,5 @@
 ---
-- name: Deploy Splitwise app
+- name: Deploy Mess app
   hosts: "127.0.0.1"
   tasks: 
     - name: Copy docker compose file to host
