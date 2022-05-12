@@ -1,8 +1,20 @@
 ---
-- name: "Deploy a jar file"
+- name: Deploy Splitwise app
   hosts: "127.0.0.1"
-  tasks:
-    - name: "Pull docker images"
-      command: "docker-compose -f docker-compose.yml pull"
-    - name: "Start docker compose"
-      command: "docker-compose -f docker-compose.yml up -d"
+  tasks: 
+    - name: Copy docker compose file to host
+      copy:
+        src: docker-compose.yml
+        dest: /home/suchi/deployments/docker-compose.yml
+    - name: Remove already existing image
+      docker_image: 
+        name: suchibhargav/mess_management_bkd
+        state: absent
+        force: yes
+    - name: Pull updated image
+      docker_image:
+        name: suchibhargav/mess_management_bkd
+    - name: Stop already running docker compose
+      shell: docker-compose -f /home/suchi/deployments/docker-compose.yml down
+    - name: Run docker compose
+      shell: docker-compose -f /home/suchi/deployments/docker-compose.yml up -d
