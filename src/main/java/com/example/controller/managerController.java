@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class managerController {
 
-    private static final Logger logger = LogManager.getLogger(foodcomController.class);
+    private static final Logger logger = LogManager.getLogger(managerController.class);
 
     @Autowired
     private CountplateService countplateservice;

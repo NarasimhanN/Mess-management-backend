@@ -14,7 +14,7 @@
 	<name>messManagement</name>
 	<description>messManagement project for spe</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>1.8</java.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -25,6 +25,7 @@
 			<groupId>io.jsonwebtoken</groupId>
 			<artifactId>jjwt-gson</artifactId>
 			<version>0.11.0</version>
+
 		</dependency>
 		<!--This dependency will be required when you are using java version greater than 8-->
 		<dependency>
@@ -102,7 +103,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>6.1.5.Final</version>
 		</dependency>
-<!--		for logger file-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-log4j2</artifactId>-->
+<!--		</dependency>-->
+
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
 			<artifactId>log4j-api</artifactId>
