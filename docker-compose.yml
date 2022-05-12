@@ -5,10 +5,10 @@ services:
     image: mysql:latest
     container_name: mysqldb
     restart: unless-stopped
-    env_file: .env
     environment:
       - MYSQL_ROOT_PASSWORD=123
       - MYSQL_DATABASE=Mess
+      
     ports:
       - "3307:3306"
     volumes:
