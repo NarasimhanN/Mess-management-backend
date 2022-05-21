@@ -1,20 +1,45 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO">
-    <Appenders>
-        <!--<Properties>
-            <Property name="basePath">./resources/logs</Property>
-        </Properties>-->
-        <Console name="ConsoleAppender" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
-        </Console>
-        <File name="FileAppender" fileName="MessLogger.log" immediateFlush="true" append="true">
-            <PatternLayout pattern="%d{dd/MMM/yyy:HH:mm:ss XX} [%t] %-5level %logger{36} - %msg%n"/>
-        </File>
-    </Appenders>
-    <Loggers>
-        <Root level="info">
-            <AppenderRef ref="ConsoleAppender" />
-            <AppenderRef ref="FileAppender"/>
-        </Root>
-    </Loggers>
-</Configuration>
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<Configuration status="INFO">-->
+<!--    <Appenders>-->
+<!--        &lt;!&ndash;<Properties>-->
+<!--            <Property name="basePath">./resources/logs</Property>-->
+<!--        </Properties>&ndash;&gt;-->
+<!--        <Console name="ConsoleAppender" target="SYSTEM_OUT">-->
+<!--            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />-->
+<!--        </Console>-->
+<!--        <File name="FileAppender" fileName="MessLogger.log" immediateFlush="true" append="true">-->
+<!--            <PatternLayout pattern="%d{dd/MMM/yyy:HH:mm:ss XX} [%t] %-5level %logger{36} - %msg%n"/>-->
+<!--        </File>-->
+<!--    </Appenders>-->
+<!--    <Loggers>-->
+<!--        <Root level="info">-->
+<!--            <AppenderRef ref="ConsoleAppender" />-->
+<!--            <AppenderRef ref="FileAppender"/>-->
+<!--        </Root>-->
+<!--    </Loggers>-->
+<!--</Configuration>-->
+
+
+<configuration>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <root level="debug">
+        <appender-ref ref="STDOUT"/>
+    </root>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <file> mess.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-4relative [%thread] %-5level %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+    <logger name="com.tripbuddy.start" level="debug" additivity="true">
+        <appender-ref ref="FILE"/>
+    </logger>
+</configuration>

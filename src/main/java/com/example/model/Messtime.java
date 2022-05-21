@@ -23,4 +23,13 @@ public class Messtime {
     private double lunchout;
     private double dinnerin;
     private double dinnerout;
+
+    public Messtime(double breakfastin, double breakfastout, double lunchin, double lunchout, double dinnerin, double dinnerout) {
+        this.breakfastin = breakfastin;
+        this.breakfastout = breakfastout;
+        this.lunchin = lunchin;
+        this.lunchout = lunchout;
+        this.dinnerin = dinnerin;
+        this.dinnerout = dinnerout;
+    }
 }
