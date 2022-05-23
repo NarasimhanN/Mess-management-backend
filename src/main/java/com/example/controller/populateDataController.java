@@ -39,4 +39,10 @@ public class populateDataController {
         return ResponseEntity.ok("Working");
     }
 
+    @PostMapping("/populatemenu")
+    public ResponseEntity<?> populatemenu(){
+        populateDataService.populatemenu();
+        return ResponseEntity.ok("Working");
+    }
+
 }

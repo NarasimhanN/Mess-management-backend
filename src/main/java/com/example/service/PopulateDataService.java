@@ -1,13 +1,7 @@
 package com.example.service;
 
-import com.example.dao.CountplatesRepository;
-import com.example.dao.InstructionRepository;
-import com.example.dao.MesstimeRepository;
-import com.example.dao.StudentdetailsRepository;
-import com.example.model.Countplates;
-import com.example.model.Instruction;
-import com.example.model.Messtime;
-import com.example.model.Studentdetails;
+import com.example.dao.*;
+import com.example.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +15,8 @@ import java.time.format.DateTimeFormatter;
 @Service
 public class PopulateDataService {
 
+    @Autowired
+    private FoodmenuRepository foodmenuRepository;
 
     @Autowired
     private CountplatesRepository countplatesRepository;
@@ -73,6 +69,16 @@ public class PopulateDataService {
         studentdetailsRepository.save(studentdetails2);
         Studentdetails studentdetails3 = new Studentdetails(2,"divyanshu","divyanshu@gmail.com","123","student","mtech","MT2021186");
         studentdetailsRepository.save(studentdetails3);
+    }
+
+    @PostConstruct
+    public void populatemenu(){
+        Foodmenu foodmenu1 = new Foodmenu("Monday","dal,chawal,rice,sambar","dhokla,dahi,chawal,upma","idli,sambar,chana,sauce");
+        System.out.println(foodmenu1);
+        foodmenuRepository.save(foodmenu1);
+        Foodmenu foodmenu2 = new Foodmenu("tuesday","chai,chawal,rice,sambar","dhokla,dahi,chawal,upma","idli,sambar,chana,sauce");
+        System.out.println(foodmenu2);
+        foodmenuRepository.save(foodmenu2);
     }
 
 

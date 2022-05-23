@@ -14,13 +14,14 @@
 //    @Autowired
 //    private FoodmenuRepository foodmenuRepository;
 //    @Test
-//    void getFoodmenuByDays(String monday) {
-//        Foodmenu f= new Foodmenu("tuesday","rice,dal,sabji,chatni","rasam,rice,bhindi,allo","roti,sbji,dal,chawal") ;
-//        foodmenuRepository.save(f);
+//    void getFoodmenuByDays() {
+//        //
+////        Foodmenu f= new Foodmenu("tuesday","rice,dal,sabji,chatni","rasam,rice,bhindi,allo","roti,sbji,dal,chawal") ;
+////        foodmenuRepository.save(f);
 //
 //        List<Foodmenu> res=foodmenuRepository.getFoodmenuByDays("tuesday");
 //        assertThat(res).isNotNull();
-//        assertThat(res).isEqualTo(f);
+//        assertThat(res).isEqualTo();
 //
 //    }
 //}
