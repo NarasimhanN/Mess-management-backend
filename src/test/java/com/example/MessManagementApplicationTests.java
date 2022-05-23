@@ -12,6 +12,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+
 @SpringBootTest
 class MessManagementApplicationTests {
 
@@ -37,7 +38,7 @@ class MessManagementApplicationTests {
 //	@Test
 //	void findById1(Integer id) {
 //
-//		Optional<Instruction> res=instructionRepository.findById(1);
+//		Instruction res=instructionRepository.findById(1).orElse(null);
 //		assertThat(res).isNotNull();
 //
 //	}

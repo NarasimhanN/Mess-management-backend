@@ -4,6 +4,7 @@
 //import com.example.model.Instruction;
 //import org.junit.jupiter.api.Test;
 //import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
 //
 //import java.util.List;
 //import java.util.Optional;
@@ -11,6 +12,7 @@
 //import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 //import static org.junit.jupiter.api.Assertions.*;
 //
+//@SpringBootTest
 //class InstructionRepositoryTest {
 //
 //    @Autowired
@@ -21,9 +23,10 @@
 //        Instruction f= new Instruction(1,"asf","dfgffh","fgullk","ghgj") ;
 //        instructionRepository.save(f);
 //
-//        Optional<Instruction>  res=instructionRepository.findById(id);
-//        assertThat(res).isNotNull();
-//        assertThat(res).isEqualTo(f);
+//        Instruction res=instructionRepository.findById(id).orElse(null);
+//        System.out.println(res.getId() + " - " + f.getId());
+//        assertThat(res.getId()).isEqualTo(f.getId());
+//        instructionRepository.deleteById(res.getId());
 //
 //    }
 //

@@ -1,25 +1,25 @@
 version: '3'
 services:
-  iglobe-frontend:
-    image: suchibhargav/mess_management_frnt:latest
-    build: /home/suchi/Documents/spe_major/backend/backend-mess-management
+  mess-frontend:
+    image: suchibhargav/mess-frontend:latest
+    build: /home/suchi/Documents/spe_major/frontent/frontent-mess
     ports:
-      - 3000:80
+      - 3000:3000
     depends_on:
-      - iglobe-backend
+      - mess-backend
 
-  iglobe-backend:
+  mess-backend:
     # container_name: spring-backend
     image: suchibhargav/mess_management_bkd:latest
     restart: on-failure
-    build: /home/suchi/Documents/spe_major/frontent/frontent-mess
+    build: .
     ports:
       - 8087:8087
     environment:
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
       - MYSQL_USER=root
-      - MYSQL_PASSWORD=123
+      - MYSQL_PASSWORD=root
     depends_on:
       - mysqldb
 
@@ -32,4 +32,4 @@ services:
       - 3307:3306
     environment:
       - MYSQL_DATABASE=Mess
-      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_ROOT_PASSWORD=root
