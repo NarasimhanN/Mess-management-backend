@@ -11,6 +11,7 @@ import com.example.model.Studentdetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.Date;
 import java.time.LocalTime;
 import java.util.List;
@@ -33,6 +34,7 @@ public class PopulateDataService {
     @Autowired
     StudentdetailsRepository studentdetailsRepository;
     //populate data in countplates
+    @PostConstruct
     public void populatecountplates(){
 
         Countplates countplates1 = new Countplates(34,java.time.LocalDate.now().toString(),1,1,0,1,0,3,"bekar");
@@ -50,17 +52,19 @@ public class PopulateDataService {
 //    }
 
 
+    @PostConstruct
     public void populatemesstime(){
         Messtime messtime= new Messtime(1,2.02,2.98,3.00,3.20,3.40,4.50);
         messtimeRepository.save(messtime);
     }
 
+    @PostConstruct
     public void populateinstruction(){
         Instruction instruction= new Instruction(1,"ghgjj","guhi","hukh","uiyhiu");
         instructionRepository.save(instruction);
     }
 
-
+    @PostConstruct
     public void populatestudentdetails(){
         Studentdetails studentdetails1 = new Studentdetails(2,"nikunj","njkhakhkhar@gmail.com","123","student","mtech","MT2021136");
         System.out.println(studentdetails1);
