@@ -10,7 +10,7 @@ services:
 
   mess-backend:
     # container_name: spring-backend
-    image: suchibhargav/mess_management_bkd:latest
+    image: suchibhargav/mess-backend:latest
     restart: on-failure
     build: .
     ports:
