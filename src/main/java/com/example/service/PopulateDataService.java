@@ -41,7 +41,7 @@ public class PopulateDataService {
         countplatesRepository.save(countplates1);
         Countplates countplates2 = new Countplates(36,java.time.LocalDate.now().toString(),4,4,2,5,1,5,"okkk");
         countplatesRepository.save(countplates2);
-        Countplates countplates3 = new Countplates(67,java.time.LocalDate.now().toString(),0,1,1,3,4,3,"okk okkk");
+        Countplates countplates3 = new Countplates(16,java.time.LocalDate.now().toString(),0,1,1,3,4,3,"okk okkk");
         countplatesRepository.save(countplates3);
     }
 
