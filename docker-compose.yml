@@ -14,7 +14,7 @@ services:
     restart: on-failure
     build: .
     ports:
-      - 8087:8087
+      - 8088:8087
     environment:
       - MYSQL_HOST=mysqldb
       - MYSQL_PORT=3306
